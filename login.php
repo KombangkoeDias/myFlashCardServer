@@ -6,10 +6,11 @@ include "database.php";
 
     $username = mysqli_real_escape_string($connect, $_POST['username']);
     $password = mysqli_real_escape_string($connect, $_POST['password']);
-
+    //$username = "kbd";
+    //$password = "123";
     
     //$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password';";
-    $query = "SELECT * FROM users";
+    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
   			
     $results = mysqli_query($connect, $query);
     /*
@@ -18,7 +19,8 @@ include "database.php";
         echo "<input id='".$row['username']."' value='".$row['username']."'>";
     }
     */
-
+    var_dump($results);
+    echo mysqli_num_rows($results);
     if(mysqli_num_rows($results) > 0)
     {
         //echo '<script> console.log("login successfully<script>");';
