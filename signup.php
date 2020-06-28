@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include "database.php";
 // REGISTER USER
     if (isset($_POST['username']) && isset($_POST['password'])){

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "database.php";
 //LOGIN USER
     if (isset($_POST['username']) && isset($_POST['password'])){
@@ -24,7 +23,6 @@ include "database.php";
     if(mysqli_num_rows($results) > 0)
     {
         //echo '<script> console.log("login successfully<script>");';
-        $_SESSION["name"] = $username;
         echo 'login successfully';
         http_response_code(200);
     }

@@ -1,5 +1,4 @@
 <?php
-session_start();
 $username="root";//change username 
 $password="root"; //change password
 $host="localhost";
