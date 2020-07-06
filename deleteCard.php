@@ -18,17 +18,9 @@ include "database.php";
         }
         $vocabulary = mysqli_real_escape_string($connect, $_POST['vocabulary']);
         $meaning = mysqli_real_escape_string($connect, $_POST['meaning']);
-
-        $selectquery = "SELECT * FROM cards WHERE set_id='$set_id' AND vocabulary='$vocabulary'";
-        $selectresult = mysqli_query($connect,$selectquery);
-        if (mysqli_num_rows($selectresult) > 0){
-            http_response_code(404);
-        }
-        else{
-            $addCardQuery = "INSERT INTO cards (vocabulary,meaning,set_id) VALUES ('$vocabulary','$meaning','$set_id')";
-            $results = mysqli_query($connect,$addCardQuery);
-            http_response_code(200);
-        }
+        $deleteCardQuery = "DELETE FROM cards WHERE set_id='$set_id' AND vocabulary='$vocabulary' AND meaning='$meaning'";
+        $results = mysqli_query($connect,$deleteCardQuery);
+        http_response_code(200);
     }
     else {
         http_response_code(404);
