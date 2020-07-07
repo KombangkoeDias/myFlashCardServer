@@ -25,13 +25,22 @@ include "database.php";
 
         $selectquery = "SELECT * FROM cards WHERE set_id='$set_id' AND vocabulary='$vocabulary' AND meaning='$meaning'";
         $selectresult = mysqli_query($connect,$selectquery);
-        if (mysqli_num_rows($selectresult) > 0){
-            $updateCardQuery = "UPDATE cards SET vocabulary='$newVocabulary', meaning='$newMeaning' WHERE vocabulary='$vocabulary' AND meaning='$meaning'";
-            $results = mysqli_query($connect,$updateCardQuery);
-            http_response_code(200);
+
+        $checkquery = "SELECT * FROM cards WHERE set_id='$set_id' AND vocabulary='$newVocabulary'";
+        $checkresult = mysqli_query($connect,$checkquery);
+
+        if (mysqli_num_rows($checkresult) > 0){
+            http_response_code(404);
         }
         else{
-            http_response_code(404);
+            if (mysqli_num_rows($selectresult) > 0){
+                $updateCardQuery = "UPDATE cards SET vocabulary='$newVocabulary', meaning='$newMeaning' WHERE vocabulary='$vocabulary' AND meaning='$meaning'";
+                $results = mysqli_query($connect,$updateCardQuery);
+                http_response_code(200);
+            }
+            else{
+                http_response_code(404);
+            }
         }
     }
     else {
