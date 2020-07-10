@@ -33,7 +33,7 @@ include "database.php";
                  array_push($mycard,$row['vocabulary']);
                  array_push($mycard,$row['meaning']);
              }
-             echo(json_encode($myarray));
+             echo(json_encode($mycard));
              http_response_code(200);
         }
         else{
